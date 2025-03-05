@@ -1,5 +1,5 @@
 #************************************************************************
-# 	Makefile for complexCalc.c - Complex Number Functions
+# 	Makefile for mathCalc.c - Integrals and Derivatives of Fucntions
 #************************************************************************
 
 # Compiler flags
@@ -10,24 +10,24 @@ CFLAGS=-Wall -g
 DEBUG=-g
 
 # Libraries
-LIBS=-lm -lcheck -lpthread -lrt -lsubunit -lcheck_pic 
+LIBS=-lm -lcheck -lpthread -lrt -lsubunit -lcheck_pic
 ## `pkg-config --cflags gtk+-2.0`
 
 # Dependencies
-DEPS = complexCalc.c complexCalc.h
-OBJ = complexCalc.o complexCalc.i complexCalc.s complexCalc.pie complexCalc.hex
+DEPS = mathCalc.c mathCalc.h
+OBJ = mathCalc.o mathCalc.i mathCalc.s mathCalc.pie mathCalc.hex
 
-all: complexCalc
+all: mathCalc
 
-complexCalc: complexCalc.o
-	$(CC) -o complexCalc complexCalc.o $(LIBS)
+mathCalc: mathCalc.o
+	$(CC) -o mathCalc mathCalc.o $(LIBS)
 
-complexCalc.o: $(DEPS)
-	$(CC) $(CFLAGS) -c complexCalc.c $(LIBS)
-	$(CC) -E complexCalc.c -o complexCalc.i $(LIBS)
-	$(CC) -S complexCalc.c -fverbose-asm -o complexCalc.s $(LIBS)
-	$(CC) -pie complexCalc.c -o complexCalc.pie $(LIBS)
-	objcopy -O ihex complexCalc complexCalc.hex
+mathCalc.o: $(DEPS)
+	$(CC) $(CFLAGS) -c mathCalc.c $(LIBS)
+	$(CC) -E mathCalc.c -o mathCalc.i $(LIBS)
+	$(CC) -S mathCalc.c -fverbose-asm -o mathCalc.s $(LIBS)
+	$(CC) -pie mathCalc.c -o mathCalc.pie $(LIBS)
+	objcopy -O ihex mathCalc mathCalc.hex
 
 clean:
 	rm -f $(OBJ) 
