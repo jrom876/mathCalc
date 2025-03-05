@@ -2,8 +2,8 @@
 
 //	Package:	tools
 //	File:		complexCalc.c 
-//	Purpose:	Provide methods for complex numbers and other
-//				math functions not inherent in C language libraries
+//	Purpose:	Provide methods for modeling complex numbers and other
+//			math functions not inherent in C language libraries
 //	Author:		jrom876
 
 
