@@ -2,14 +2,13 @@
 //	Package:	tools
 //	File:		mathCalc.c 
 //	Purpose:	Provide methods for integrals, derivatives, and other
-//				math functions not inherent in C language libraries
+//			math functions not inherent in C language libraries
 //	Author:		jrom876
 
 /**
 	Copyright (C) 2019, 2021 
 	Jacob Romero, Creative Engineering Solutions, LLC
 	cesllc876@gmail.com
-	admin@jrom.io 
 
 	This program is free software; you can redistribute it
 	and/or modify it under the terms of the GNU General Public  
@@ -37,14 +36,14 @@
 #include "mathCalc.h"
 
 /// STANDARD DEFINITIONS FOR PROJECT SCICALC 
-#define PI	3.14159265358979323846 // ad infinitum
-#define LIGHT_SPEED		299792458 // meters per second
-#define DATA_SIZE 1000
-#define DELTA 1.0e-6
-#define KILO 1000
-#define MEGA 1000000
-#define GIGA 1000000000
-#define TERA 1000000000000 
+#define PI		3.14159265358979323846 // ad infinitum
+#define LIGHT_SPEED	299792458 // meters per second
+#define DATA_SIZE 	1000
+#define DELTA 		1.0e-6
+#define KILO 		1000
+#define MEGA 		1000000
+#define GIGA 		1000000000
+#define TERA 		1000000000000 
 
 double integral(double(*f)(double x), double a, double b, int n) {
     double step = (b - a) / n;  // width of each small rectangle
