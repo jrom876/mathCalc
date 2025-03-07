@@ -1,5 +1,5 @@
 #************************************************************************
-# 	Makefile for mathCalc.c - Integrals and Derivatives of Fucntions
+# 	Makefile for mathCalc.c - Integrals, Derivatives, and more
 #************************************************************************
 
 # Compiler flags
