@@ -15,11 +15,14 @@ LIBS=-lm -lcheck -lpthread -lrt -lsubunit -lcheck_pic
 
 # Dependencies
 DEPS =  complexCalc.c complexCalc.h \
+	delay.c delay.h \
 	mathCalc.c mathCalc.h
-OBJ = 	mathCalc.o mathCalc.i mathCalc.s mathCalc.pie mathCalc.hex \
-	complexCalc.o complexCalc.i complexCalc.s complexCalc.pie complexCalc.hex
 
-all: complexCalc mathCalc
+OBJ = 	mathCalc.o mathCalc.i mathCalc.s mathCalc.pie mathCalc.hex \
+	complexCalc.o complexCalc.i complexCalc.s complexCalc.pie complexCalc.hex \
+	delay.o delay.i delay.s delay.pie delay.hex
+
+all: complexCalc delay mathCalc
 
 complexCalc: complexCalc.o
 	$(CC) -o complexCalc complexCalc.o $(LIBS)
@@ -30,6 +33,16 @@ complexCalc.o: $(DEPS)
 	$(CC) -S complexCalc.c -fverbose-asm -o complexCalc.s $(LIBS)
 	$(CC) -pie complexCalc.c -o complexCalc.pie $(LIBS)
 	objcopy -O ihex complexCalc complexCalc.hex
+
+delay: delay.o
+	$(CC) -o delay delay.o
+
+delay.o: $(DEPS)
+	$(CC) $(CFLAGS) -c delay.c
+	$(CC) -E delay.c -o delay.i
+	$(CC) -S delay.c -fverbose-asm -o delay.s
+	$(CC) -pie delay.c -o delay.pie
+	objcopy -O ihex delay delay.hex
 
 mathCalc: mathCalc.o
 	$(CC) -o mathCalc mathCalc.o $(LIBS)
