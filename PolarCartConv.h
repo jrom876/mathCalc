@@ -46,9 +46,6 @@ struct Spherical {
 	float phiDegrees;
 };
 
-/** 
- * CONSTRUCTORS
-**/
 struct Cartesian_2D createCartesian_2D	(float x, float y);
 struct Cartesian_3D createCartesian_3D	(float x, float y, float z);
 
