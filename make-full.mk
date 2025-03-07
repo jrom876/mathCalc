@@ -16,13 +16,15 @@ LIBS=-lm -lcheck -lpthread -lrt -lsubunit -lcheck_pic
 # Dependencies
 DEPS =  complexCalc.c complexCalc.h \
 	delay.c delay.h \
-	mathCalc.c mathCalc.h
+	mathCalc.c mathCalc.h \
+	PolarCartConv.c PolarCartConv.h
 
 OBJ = 	mathCalc.o mathCalc.i mathCalc.s mathCalc.pie mathCalc.hex \
 	complexCalc.o complexCalc.i complexCalc.s complexCalc.pie complexCalc.hex \
-	delay.o delay.i delay.s delay.pie delay.hex
+	delay.o delay.i delay.s delay.pie delay.hex \
+	PolarCartConv PolarCartConv.o PolarCartConv.i PolarCartConv.s PolarCartConv.pie PolarCartConv.hex
 
-all: complexCalc delay mathCalc
+all: complexCalc delay mathCalc PolarCartConv
 
 complexCalc: complexCalc.o
 	$(CC) -o complexCalc complexCalc.o $(LIBS)
@@ -53,6 +55,16 @@ mathCalc.o: $(DEPS)
 	$(CC) -S mathCalc.c -fverbose-asm -o mathCalc.s $(LIBS)
 	$(CC) -pie mathCalc.c -o mathCalc.pie $(LIBS)
 	objcopy -O ihex mathCalc mathCalc.hex
+
+PolarCartConv: PolarCartConv.o
+	$(CC) -o PolarCartConv PolarCartConv.o $(LIBS)
+
+PolarCartConv.o: $(DEPS)
+	$(CC) $(CFLAGS) -c PolarCartConv.c $(LIBS)
+#~ 	$(CC) -E PolarCartConv.c -o PolarCartConv.i $(LIBS)
+#~ 	$(CC) -S PolarCartConv.c -fverbose-asm -o PolarCartConv.s $(LIBS)
+#~ 	$(CC) -pie PolarCartConv.c -o PolarCartConv.pie $(LIBS)
+#~ 	objcopy -O ihex PolarCartConv PolarCartConv.hex
 
 clean:
 	rm -f $(OBJ) 
