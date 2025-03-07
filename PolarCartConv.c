@@ -20,10 +20,6 @@
 #include <time.h>
 #include "PolarCartConv.h"
 
-/**
- * CONSTRUCTORS
- * **/
-
 struct Cartesian_2D createCartesian_2D (float x, float y) {
 	struct Cartesian_2D cp;
 	cp.xcoord = ((x > XMAX) || (x < XMIN)) ? XMIN : x;
