@@ -17,14 +17,16 @@ LIBS=-lm -lcheck -lpthread -lrt -lsubunit -lcheck_pic
 DEPS =  complexCalc.c complexCalc.h \
 	delay.c delay.h \
 	mathCalc.c mathCalc.h \
+	sqrtx.c sqrtx.h \
 	PolarCartConv.c PolarCartConv.h
 
 OBJ = 	mathCalc.o mathCalc.i mathCalc.s mathCalc.pie mathCalc.hex \
 	complexCalc.o complexCalc.i complexCalc.s complexCalc.pie complexCalc.hex \
 	delay.o delay.i delay.s delay.pie delay.hex \
+	sqrtx sqrtx.o sqrtx.i sqrtx.s sqrtx.pie sqrtx.hex \
 	PolarCartConv PolarCartConv.o PolarCartConv.i PolarCartConv.s PolarCartConv.pie PolarCartConv.hex
 
-all: complexCalc delay mathCalc PolarCartConv
+all: complexCalc delay mathCalc sqrtx PolarCartConv
 
 complexCalc: complexCalc.o
 	$(CC) -o complexCalc complexCalc.o $(LIBS)
@@ -55,6 +57,15 @@ mathCalc.o: $(DEPS)
 	$(CC) -S mathCalc.c -fverbose-asm -o mathCalc.s $(LIBS)
 	$(CC) -pie mathCalc.c -o mathCalc.pie $(LIBS)
 	objcopy -O ihex mathCalc mathCalc.hex
+
+sqrtx: sqrtx.o
+	$(CC) -o sqrtx sqrtx.o $(LIBS)
+
+sqrtx.o: $(DEPS)
+	$(CC) $(CFLAGS) -c sqrtx.c $(LIBS)
+	$(CC) -E sqrtx.c -o sqrtx.i $(LIBS)
+	$(CC) -S sqrtx.c -fverbose-asm -o sqrtx.s $(LIBS)
+	$(CC) -pie sqrtx.c -o sqrtx.pie $(LIBS)
 
 PolarCartConv: PolarCartConv.o
 	$(CC) -o PolarCartConv PolarCartConv.o $(LIBS)
