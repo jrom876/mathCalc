@@ -3,7 +3,7 @@
 //
 //  File Name:          PolarCartConv.c
 //  Project Name:       toolbox
-//  Code Writer: 	 	Jacob M. Romero
+//  Code Writer: 	Jacob M. Romero
 //
 //===========================================================
 
